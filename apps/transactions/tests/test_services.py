@@ -2,7 +2,7 @@ from decimal import Decimal
 
 import pytest
 
-from apps.transactions.models import Transaction, TransactionType, TransactionStatus
+from apps.transactions.models import Transaction, TransactionStatus, TransactionType
 from apps.transactions.services import TransactionAggregator
 
 

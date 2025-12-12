@@ -1,5 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from drf_spectacular.utils import extend_schema, OpenApiParameter
+from drf_spectacular.utils import OpenApiParameter, extend_schema
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter
@@ -7,9 +7,9 @@ from rest_framework.response import Response
 
 from .models import Transaction
 from .serializers import (
-    TransactionSerializer,
     AggregationRequestSerializer,
     AggregationResponseSerializer,
+    TransactionSerializer,
 )
 from .services import TransactionAggregator
 

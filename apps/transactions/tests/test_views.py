@@ -5,7 +5,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 
-from apps.transactions.models import Transaction, TransactionType, TransactionStatus
+from apps.transactions.models import Transaction, TransactionStatus, TransactionType
 
 
 @pytest.mark.django_db
