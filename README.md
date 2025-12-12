@@ -45,3 +45,7 @@ the transactions on the database level.
 4. JWT Authentication
 5. Integrate Sentry for error tracking and structured logging with metrics
 6. Use environment-specific settings
+
+## TODO
+
+- Fix mypy configuration to work with Django plugin and enable type checking in CI

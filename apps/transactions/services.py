@@ -1,6 +1,6 @@
 from collections import defaultdict
 from decimal import Decimal
-from typing import Any, Dict, List
+from typing import Any
 
 from django.db.models import QuerySet, Sum
 
@@ -12,8 +12,8 @@ class TransactionAggregator:
 
     @classmethod
     def aggregate(
-        cls, row_field: str, column_fields: List[str], queryset: QuerySet | None = None
-    ) -> Dict[str, Any]:
+        cls, row_field: str, column_fields: list[str], queryset: QuerySet | None = None
+    ) -> dict[str, Any]:
         if queryset is None:
             queryset = Transaction.objects.all()
 
@@ -33,9 +33,9 @@ class TransactionAggregator:
 
     @classmethod
     def _build_nested_structure(
-        cls, aggregated: QuerySet, row_field: str, column_fields: List[str]
-    ) -> Dict[str, Any]:
-        result: Dict[str, Any] = defaultdict(lambda: defaultdict(Decimal))
+        cls, aggregated: QuerySet, row_field: str, column_fields: list[str]
+    ) -> dict[str, Any]:
+        result: dict[str, Any] = defaultdict(lambda: defaultdict(Decimal))
 
         for row in aggregated:
             row_value = row[row_field]
@@ -48,10 +48,10 @@ class TransactionAggregator:
 
     @classmethod
     def _calculate_totals(
-        cls, aggregated: QuerySet, row_field: str, column_fields: List[str]
-    ) -> Dict[str, Any]:
-        column_totals: Dict[str, Decimal] = defaultdict(Decimal)
-        row_totals: Dict[str, Decimal] = defaultdict(Decimal)
+        cls, aggregated: QuerySet, row_field: str, column_fields: list[str]
+    ) -> dict[str, Any]:
+        column_totals: dict[str, Decimal] = defaultdict(Decimal)
+        row_totals: dict[str, Decimal] = defaultdict(Decimal)
         grand_total = Decimal("0")
 
         for row in aggregated:
@@ -70,6 +70,6 @@ class TransactionAggregator:
         }
 
     @classmethod
-    def _make_column_key(cls, row: Dict[str, Any], column_fields: List[str]) -> str:
+    def _make_column_key(cls, row: dict[str, Any], column_fields: list[str]) -> str:
         parts = [str(row[field]) for field in column_fields]
         return " | ".join(parts)
